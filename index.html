@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopiQue Prime Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 12s linear infinite;
+}
+</style>
+
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+<!-- 💡 Shop Introduction -->
+<header class="bg-gradient-to-r from-purple-900 to-blue-800 text-white p-6 text-center shadow-lg">
+  <h1 class="text-4xl font-bold">ShopiQue Prime Store</h1>
+  <p class="mt-2"></p>"কাস্টমারদের সন্তুষ্টি অর্জন আমাদের প্রথম লক্ষ্য"
+</header>
+<div class="w-full bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-2 rounded-xl text-center overflow-hidden my-6">
+  <div class="whitespace-nowrap animate-marquee text-xl font-semibold">
+    👋 Welcome back! Enjoy exclusive surprises, deals, and bundles only on ShopiQue Prime Store 🎉
+  </div>
+</div>
+
+<!-- 🔍 Search + Category Filter -->
+<div class="bg-gradient-to-r from-purple-900 via-indigo-800 to-blue-800 p-6 rounded-xl shadow-lg mx-4 mt-6 flex flex-col md:flex-row items-center justify-between text-white gap-4">
+  <div class="relative w-full md:w-1/2">
+    <!-- Search Input -->
+    <input type="text" id="searchInput" placeholder="🔍 Search your favorite product..." class="w-full px-5 py-3 rounded-lg border border-purple-400 bg-white text-gray-800 focus:outline-none" />
+    <!-- Clear Button -->
+    <button id="clearSearch" class="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-600 hover:text-gray-800" style="cursor: pointer; display: none;">
+      <i class="fas fa-times"></i> <!-- "X" icon -->
+    </button>
+  </div>
+
+  <div class="flex flex-wrap gap-2 mt-2 md:mt-0">
+    <button onclick="filterProducts('all')" class="filter-btn bg-white text-purple-800 px-4 py-2 rounded-full font-semibold hover:bg-purple-300 transition">All Categories</button>
+    <button onclick="filterProducts('streaming')" class="filter-btn bg-white text-purple-800 px-4 py-2 rounded-full font-semibold hover:bg-purple-300 transition">Streaming</button>
+    <button onclick="filterProducts('music')" class="filter-btn bg-white text-purple-800 px-4 py-2 rounded-full font-semibold hover:bg-purple-300 transition">Music</button>
+    <button onclick="filterProducts('ai')" class="filter-btn bg-white text-purple-800 px-4 py-2 rounded-full font-semibold hover:bg-purple-300 transition">AI</button>
+    <button onclick="filterProducts('editing')" class="filter-btn bg-white text-purple-800 px-4 py-2 rounded-full font-semibold hover:bg-purple-300 transition">Editing</button>
+    <button onclick="filterProducts('software')" class="filter-btn bg-white text-purple-800 px-4 py-2 rounded-full font-semibold hover:bg-purple-300 transition">Software</button>
+  </div>
+</div>
+
+
+  <!-- 🛒 Product Grid -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6" id="productSection">
+
+ <!-- Netflix -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
+        <div class="relative">
+          <img src="https://filmdaily.co/wp-content/uploads/2022/06/netflix-02-1.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Netflix">
+          <span class="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">Popular</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">Netflix Subscription
+        <br>(Single Screen)</h2>
+        <p class="text-sm text-gray-600 mb-2">4K Quality <br>Renewable Account</p>
+        <p class="font-bold text-green-600 mb-3">৳350/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-Netflix" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('Netflix', 350)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+    
+ <!-- YouTube Premium -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
+        <div class="relative">
+          <img src="https://tse4.mm.bing.net/th/id/OIP.r5BUE1R0MSYJAxVXaI220gHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="rounded-md mb-2 w-full h-36 object-cover" alt="YouTube Premium">
+          <span class="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">Popular</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">YouTube Premium
+        <br>(Single pack)</h2>
+        <p class="text-sm text-gray-600 mb-2">Ad‑Free + Background Play + Offline Downloads</p>
+        <p class="font-bold text-green-600 mb-3">৳49/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-YouTubePremium" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('YouTube Premium', 49)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+      
+     <!-- YouTube Premium Renewal -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
+        <div class="relative">
+          <img src="https://i2.wp.com/www.dignited.com/wp-content/uploads/2020/04/YouTube-premiuim1.png?fit=1436%2C681&ssl=1" class="rounded-md mb-2 w-full h-36 object-cover" alt="YouTube Premium Renewal">
+          <span class="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">Popular</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">YouTube Premium 
+            <br>(Renewal pack)</h2>
+        <p class="text-sm text-gray-600 mb-2">Ad‑Free + Background Play + Offline Downloads</p>
+        <p class="font-bold text-green-600 mb-3">৳130/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-YouTubePremiumRenewal" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('YouTube Premium Renewal', 130)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+      <!-- Gemini Advanced -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="ai">
+        
+        <div class="relative">
+          <img src="https://futurepedia.b-cdn.net/wp-content/uploads/2024/02/geminnnnnnn.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Gemini Advanced">
+          <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">AI Tool</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">Gemini Advanced + 2TB Storage</h2>
+        <p class="text-sm text-gray-600 mb-2">NotebookLM, 1,000 AI Credits, Flow & Whisk</p>
+        <p class="font-bold text-green-600 mb-3">৳100/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-GeminiAdvanced" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('Gemini Advanced', 100)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+      <!-- Capcut Premium -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="editing">
+        <div class="relative">
+          <img src="https://api.indonesiacomiccon.com/storage/files/logo-capcut_1698645087-md.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt" alt="Capcut Premium">
+          <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">New</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">Capcut Premium</h2>
+        <p class="text-sm text-gray-600 mb-2">Shared Login – Mobile & PC</p>
+        <p class="font-bold text-green-600 mb-3">৳400/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-CapcutPremium" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('Capcut Premium', 400)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+      <!-- ChatGPT -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="ai">
+        <div class="relative">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.7JJ9EYFvPMbcQsUpNZjYZQHaEK?rs=1&pid=ImgDetMain&o=7&rm=33" class="rounded-md mb-2 w-full h-36 object-cover" alt="ChatGPT">
+          <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">AI Tool</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">ChatGPT Plus</h2>
+        <p class="text-sm text-gray-600 mb-2">Shared</p>
+        <p class="font-bold text-green-600 mb-3">৳400/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-ChatGPT" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('ChatGPT', 400)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+      <!-- Hoichoi -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
+        <img src="https://m.media-amazon.com/images/I/41ElZCn8sML._SX679_.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Hoichoi">
+        <h2 class="text-lg font-semibold mb-1">Hoichoi Subscription</h2>
+        <p class="text-sm text-gray-600 mb-2">Personal</p>
+        <p class="font-bold text-green-600 mb-3">৳120/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-Hoichoi" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('Hoichoi', 120)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+
+      <!-- Sony Liv -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.0xWK5Ls4Ogf3FZd2AJPEOgHaEt?rs=1&pid=ImgDetMain&o=7&rm=3" class="rounded-md mb-2 w-full h-36 object-cover" alt="Sony Liv">
+        <h2 class="text-lg font-semibold mb-1">Sony Liv Subscription</h2>
+        <p class="text-sm text-gray-600 mb-2">Personal</p>
+        <p class="font-bold text-green-600 mb-3">৳200/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-SonyLiv" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('Sony Liv', 200)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+      <!-- Chorki subscription -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
+        <div class="relative">
+          <img src="https://www.shutterstock.com/image-photo/dhaka-baangladesh-27-july-2024-600nw-2497364303.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Chorki">
+          <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">New</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">Chorki Subscription</h2>
+        <p class="text-sm text-gray-600 mb-2">Personal</p>
+        <p class="font-bold text-green-600 mb-3">৳160/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-Chorki" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('Chorki', 160)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+      <!-- Spotify -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="music">
+        <div class="relative">
+          <img src="https://cdn.siasat.com/wp-content/uploads/2022/02/Spotify.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Spotify">
+          <span class="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">Popular</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">Spotify Premium</h2>
+        <p class="text-sm text-gray-600 mb-2">1/3/6/12 Months Subscription</p>
+        <p class="font-bold text-green-600 mb-3">৳120–1080 BDT</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-Spotify" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('Spotify', 120)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+      <!-- Crunchyroll subscription -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
+        <div class="relative">
+          <img src="https://static1.dualshockersimages.com/wordpress/wp-content/uploads/2023/06/crunchyroll.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Crunchyroll">
+          <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">New</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">Crunchyroll Subscription</h2>
+        <p class="text-sm text-gray-600 mb-2">Personal or Shared</p>
+        <p class="font-bold text-green-600 mb-3">৳120/month</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-Crunchyroll" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('Crunchyroll', 120)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+
+<!-- Windows Product -->
+      <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="software">
+        <div class="relative">
+          <img src="https://cdn.vox-cdn.com/thumbor/mcsWcHsnMQ6ROf2Enbx-x3Pw_-Q=/0x0:1025x683/1200x628/filters:focal(512x341:513x342)/cdn.vox-cdn.com/uploads/chorus_asset/file/15361898/windowsbluestock.0_standard_1025.0.0.0.1431023935.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Crunchyroll">
+          <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">New</span>
+        </div>
+        <h2 class="text-lg font-semibold mb-1">Windows 10/11 Pro License</h2>
+        <p class="text-sm text-gray-600 mb-2">Lifetime Activation – Genuine Key</p>
+        <p class="font-bold text-green-600 mb-3">৳399 BDT</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="qty-Windows" min="1" value="1" class="w-16 border rounded p-1" />
+          <button onclick="orderNow('Windows', 399)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+        </div>
+      </div>
+</section>
+
+<script>
+// Order function
+function orderNow(product, price) {
+  const qty = document.getElementById(`qty-${product.replace(/\s+/g, '')}`).value; // Get quantity based on product name
+  const total = qty * price; // Calculate total
+  const msg = `Hi! I want to order ${qty} x ${product} for ৳${total}.`; // Create message for WhatsApp
+
+  // Open WhatsApp with the order message
+  window.open(`https://wa.me/8801614661421?text=${encodeURIComponent(msg)}`, '_blank');
+}
+</script>
+
+
+  </section>
+
+  <!-- ❌ No Product Message -->
+  <p id="noProductMessage" class="text-center text-gray-600 text-lg hidden mb-10">🚫 No product found. Try another keyword or category.</p>
+
+  <!-- 🎉 Weekly Surprise Box -->
+<div class="bg-gradient-to-r from-pink-600 to-purple-700 p-6 rounded-3xl shadow-2xl text-center text-white my-10 max-w-xl mx-auto">
+  <h3 class="text-3xl font-bold mb-2">🎊 Weekly Surprise Box</h3>
+  <p id="surpriseText" class="text-lg mb-3">Tap the button below to reveal your surprise 🎁</p>
+  
+  <!-- Countdown Text -->
+  <div id="countdownTimer" class="text-sm text-yellow-200 mb-3 hidden"></div>
+
+  <!-- Countdown Bar -->
+  <div class="w-full h-2 bg-yellow-100 rounded-full overflow-hidden mb-4">
+    <div id="countdownBar" class="h-full bg-yellow-400 transition-all duration-1000" style="width: 0%"></div>
+  </div>
+
+  <button id="unlockBtn" class="mt-2 bg-yellow-300 text-purple-900 font-bold px-6 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300">
+    Unlock Surprise ✨
+  </button>
+</div>
+
+<script>
+  const weeklySurprises = [
+    "🎁 Get 10% OFF your next subscription above 200 TK!",
+    "🔥 Combo Deal: Netflix + YouTube + Prime video!",
+    "🎧 Bonus: Try a VPN free for 7 days — DM us!",
+    "💡 Smart Tip: Use CapCut + Gemini for Pro editing!",
+    "🚀 Flash Deal: 1 Month YouTube Premium (Renewal) at 100৳!",
+    "🎉 Offer: Buy 3 months of Prime video, get 1 month free!",
+    "🧠 Fun Fact: Hoichoi + Chorki Combo only 250৳!",
+    "🎮 Deal: Get 1 month of Sony Liv for just 100৳!",
+  ];
+
+  const unlockBtn = document.getElementById("unlockBtn");
+  const surpriseText = document.getElementById("surpriseText");
+  const countdownTimer = document.getElementById("countdownTimer");
+  const countdownBar = document.getElementById("countdownBar");
+
+  const WEEK_MS = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
+
+  unlockBtn.addEventListener("click", () => {
+    const now = new Date().getTime();
+    const lastUnlock = localStorage.getItem("lastWeeklySurprise");
+
+    if (lastUnlock && now - parseInt(lastUnlock) < WEEK_MS) {
+      const nextUnlock = parseInt(lastUnlock) + WEEK_MS;
+      startCountdown(nextUnlock);
+      surpriseText.textContent = "😎 You've already opened this week's surprise! Come back later.";
+      return;
+    }
+
+    const surprise = weeklySurprises[Math.floor(Math.random() * weeklySurprises.length)];
+    surpriseText.textContent = "🎉 Surprise Unlocked: " + surprise;
+    localStorage.setItem("lastWeeklySurprise", now.toString());
+
+    const nextUnlock = now + WEEK_MS;
+    startCountdown(nextUnlock);
+  });
+
+  function startCountdown(endTime) {
+    countdownTimer.classList.remove("hidden");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const remaining = endTime - now;
+
+      if (remaining <= 0) {
+        countdownTimer.textContent = "✅ Surprise is now available!";
+        countdownBar.style.width = "100%";
+        return;
+      }
+
+      const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+      countdownTimer.textContent = `⏳ Next unlock in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      const progress = ((WEEK_MS - remaining) / WEEK_MS) * 100;
+      countdownBar.style.width = `${progress}%`;
+    }
+
+    updateCountdown(); // Initial call
+    setInterval(updateCountdown, 1000); // Update every second
+  }
+
+  // Run countdown if locked
+  const saved = localStorage.getItem("lastWeeklySurprise");
+  if (saved && new Date().getTime() - parseInt(saved) < WEEK_MS) {
+    const nextUnlock = parseInt(saved) + WEEK_MS;
+    startCountdown(nextUnlock);
+    surpriseText.textContent = "😎 You've already opened this week's surprise! Come back later.";
+  }
+</script>
+ <script>
+    function filterProducts() {
+      const searchText = document.getElementById('searchInput').value.toLowerCase();
+      const selectedType = document.getElementById('categoryFilter').value;
+      document.querySelectorAll('.product-card').forEach(card => {
+        const title = card.querySelector('h2').textContent.toLowerCase();
+        const type = card.getAttribute('data-type');
+        card.style.display = (title.includes(searchText) && (selectedType === '' || type === selectedType)) ? 'block' : 'none';
+      });
+    }
+
+   function orderNow(product, price) {
+  const qty = document.getElementById(`qty-${product.replace(/\s+/g, '')}`).value;
+  const total = qty * price;
+  const msg = `Hi! I want to order ${qty} x ${product} for ৳${total}.`;
+
+  const confirmed = confirm(`Are you sure you want to order ${qty} x ${product} for ৳${total}?`);
+
+  if (confirmed) {
+    window.open(`https://wa.me/8801614661421?text=${encodeURIComponent(msg)}`, '_blank');
+
+  }
+}
+
+  </script>
+ <!-- Include Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <script>
+    function filterProducts() {
+      const searchText = document.getElementById('searchInput').value.toLowerCase();
+      const selectedType = document.getElementById('categoryFilter').value;
+      document.querySelectorAll('.product-card').forEach(card => {
+        const title = card.querySelector('h2').textContent.toLowerCase();
+        const type = card.getAttribute('data-type');
+        card.style.display = (title.includes(searchText) && (selectedType === '' || type === selectedType)) ? 'block' : 'none';
+      });
+    }
+
+    function orderNow(product, price) {
+      const qty = document.getElementById(`qty-${product.replace(/\s+/g, '')}`).value;
+      const total = qty * price;
+      const msg = `Hi! I want to order ${qty} x ${product} for ৳${total}.`;
+      window.open(`https://wa.me/8801614661421?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
+</body>
+<section> 
+
+  <!-- 🌟 Footer Section -->
+<footer class="bg-gradient-to-r from-indigo-800 via-purple-800 to-blue-800 text-white pt-10 pb-6 mt-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-sm">
+
+      <!-- 🛒 Store Description -->
+      <div>
+        <h3 class="text-xl font-bold mb-3">🛍️ ShopiQue Prime Store</h3>
+        <p class="opacity-90 leading-relaxed">
+          Your trusted digital subscription store. We provide premium access to top streaming, AI tools, and media services at the lowest price in Bangladesh.
+        </p>
+      </div>
+
+      <!-- 💡 Why Choose Us -->
+      <div>
+        <h3 class="text-lg font-semibold mb-3">💡 Why Choose Us?</h3>
+        <ul class="space-y-2 list-disc list-inside">
+          <li>Affordable prices</li>
+          <li>Instant delivery</li>
+          <li>Secure transactions</li>
+          <li>24/7 customer support</li>
+        </ul>
+      </div>
+
+     <!-- 📞 Contact Card -->
+      <div>
+        <h3 class="text-lg font-semibold mb-3">📞 Contact Us</h3>
+        <ul class="space-y-2">
+          <li>
+            <i class="fab fa-whatsapp mr-2"></i>
+            <a href="https://wa.me/8801614661421" target="_blank" class="hover:underline">WhatsApp: +880 1614-661421</a>
+          </li>
+          <li>
+            <i class="fab fa-facebook mr-2"></i>
+            <a href="https://facebook.com/shopiqueprimestore" target="_blank" class="hover:underline">Facebook page: @shopiqueprimestore</a>
+          </li>
+          <li>
+            <i class="fas fa-envelope mr-2"></i>
+            <a href="mailto:shopiqueprimestore@gmail.com" class="hover:underline">shopiqueprimestore@gmail.com</a>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <!-- 🗂️ Store Info -->
+      <div>
+        <h3 class="text-lg font-semibold mb-3">🗂️ Store Info</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-id-card text-white/80"></i>
+            <span><strong>ID:</strong> #UDRV13</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-map-marker-alt text-red-400"></i>
+            <span><strong>Location:</strong> Bangladesh</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-clock text-pink-300"></i>
+            <span><strong>Open:</strong> 24/7 Online Support</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+</footer>
+
+</section>
+
+  <!-- 🔧 Script Section -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const productSection = document.getElementById('productSection');
+    const noProductMessage = document.getElementById('noProductMessage');
+
+    searchInput.addEventListener("input", () => {
+      const term = searchInput.value.toLowerCase();
+      const cards = document.querySelectorAll(".product-card");
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const match = card.innerText.toLowerCase().includes(term);
+        card.style.display = match ? "block" : "none";
+        if (match) visibleCount++;
+      });
+
+      noProductMessage.classList.toggle("hidden", visibleCount !== 0);
+    });
+
+    function filterProducts(category) {
+      const cards = document.querySelectorAll(".product-card");
+      const searchTerm = searchInput.value.toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const matchesCategory = category === "all" || card.dataset.category === category;
+        const matchesSearch = card.innerText.toLowerCase().includes(searchTerm);
+        const shouldShow = matchesCategory && matchesSearch;
+        card.style.display = shouldShow ? "block" : "none";
+        if (shouldShow) visibleCount++;
+      });
+
+      noProductMessage.classList.toggle("hidden", visibleCount !== 0);
+    }
+
+    // Show all products initially
+    filterProducts("all");
+  </script>
+<script>
+// Get elements
+const searchInput = document.getElementById('searchInput');
+const clearButton = document.getElementById('clearSearch');
+
+// Show the clear button when the input is not empty
+searchInput.addEventListener('input', () => {
+  if (searchInput.value.trim() !== '') {
+    clearButton.style.display = 'block'; // Show the clear button
+  } else {
+    clearButton.style.display = 'none'; // Hide the clear button when input is empty
+  }
+});
+searchInput.addEventListener('input', () => {
+  if (searchInput.value.trim() !== '') {
+    clearButton.style.display = 'block'; // Show the clear button
+  } else {
+    clearButton.style.display = 'none'; // Hide the clear button when input is empty
+  }
+});
+
+// Clear the search input when the button is clicked
+clearButton.addEventListener('click', () => {
+  searchInput.value = ''; // Clear the input
+  clearButton.style.display = 'none'; // Hide the clear button
+  filterProducts('all'); // Optionally call filter function to reset the product grid
+});
+    </script>   
+</body>
+</html>
