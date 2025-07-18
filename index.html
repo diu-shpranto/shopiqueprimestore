@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>ShopiQue Prime Store</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-@keyframes marquee {
-  0%   { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
-.animate-marquee {
-  display: inline-block;
-  animation: marquee 12s linear infinite;
-}
-</style>
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .animate-marquee {
+      display: inline-block;
+      animation: marquee 12s linear infinite;
+    }
+  </style>
 
 </head>
 <body class="bg-gray-100 text-gray-800">
+
 
 <!-- 💡 Shop Introduction -->
 <header class="bg-gradient-to-r from-purple-900 to-blue-800 text-white p-6 text-center shadow-lg">
@@ -449,8 +451,14 @@ function orderNow(product, price) {
           </li>
         </ul>
       </div>
-
     </div>
+ <!-- Bottom Copyright -->
+<div class="mt-10 border-t border-white/20 pt-4 text-center text-xs opacity-80">
+  <div class="max-w-7xl mx-auto text-center">
+    &copy; 2025 ShopiQue Prime Store. All rights reserved.
+  </div>
+</div>
+
 </footer>
 
 </section>
