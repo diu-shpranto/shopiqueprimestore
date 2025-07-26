@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ShopiQue Prime Store</title>
-  
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @keyframes marquee {
       0% { transform: translateX(100%); }
@@ -19,15 +22,46 @@
     }
   </style>
 </head>
-<body class="font-sans bg-gray-100 text-gray-800">
-  <!-- Main Container -->
-  <div class="max-w-screen-xl mx-auto p-4">
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-white">
 
-    <!-- Logo with responsive size -->
-    <div class="flex justify-center my-4">
-    
-    </div>
-<body class="bg-gray-100 text-gray-800">
+<!-- Header with login/cart/dark mode -->
+<header class="bg-gradient-to-r from-purple-900 to-blue-800 text-white p-4 flex justify-between items-center">
+  <div class="flex items-center gap-4">
+    <img src="logo.png" alt="Logo" class="w-12 h-12 hidden md:block">
+    <h1 class="text-2xl font-bold">ShopiQue Prime Store</h1>
+  </div>
+
+  <div class="flex gap-4 items-center">
+    <button id="darkToggle" class="text-white hover:text-yellow-300">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="cartBtn" class="relative">
+      <i class="fas fa-shopping-cart text-white text-xl"></i>
+      <span id="cartCount" class="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1">0</span>
+    </button>
+    <div id="userDisplay" class="text-sm">👤 <span id="usernameDisplay">Guest</span></div>
+    <button id="loginBtn" class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-300 text-sm">Login</button>
+    <button id="logoutBtn" class="hidden bg-red-500 text-white px-3 py-1 rounded hover:bg-red-400 text-sm">Logout</button>
+  </div>
+</header>
+
+<!-- Login Modal -->
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+  <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl w-80">
+    <h2 class="text-lg font-bold mb-4">Login</h2>
+    <input id="usernameInput" type="text" placeholder="Enter your name" class="w-full px-3 py-2 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600">
+    <button id="submitLogin" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 w-full">Login</button>
+  </div>
+</div>
+
+<!-- Cart Sidebar -->
+<div id="cartSidebar" class="fixed top-0 right-0 w-80 h-full bg-white dark:bg-gray-800 shadow-xl p-4 transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+  <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+  <div id="cartItems"></div>
+  <p class="font-bold mt-4">Total: ৳<span id="cartTotal">0</span></p>
+  <button id="checkoutBtn" class="mt-4 bg-green-500 text-white px-4 py-2 rounded w-full hover:bg-green-600">Checkout via WhatsApp</button>
+  <button id="clearCartBtn" class="mt-2 bg-red-500 text-white px-4 py-2 rounded w-full hover:bg-red-600">Clear Cart</button>
+</div>
 
 
 <!-- 💡 Shop Introduction -->
@@ -519,7 +553,109 @@ function orderNow(product, price) {
     // Show all products initially
     filterProducts("all");
   </script>
-<script>
+  <script>
+// Dark Mode Toggle
+const darkToggle = document.getElementById('darkToggle');
+const htmlEl = document.documentElement;
+if (localStorage.getItem('darkMode') === 'enabled') htmlEl.classList.add('dark');
+
+darkToggle.addEventListener('click', () => {
+  htmlEl.classList.toggle('dark');
+  localStorage.setItem('darkMode', htmlEl.classList.contains('dark') ? 'enabled' : 'disabled');
+});
+
+// Login System
+const loginBtn = document.getElementById('loginBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+const loginModal = document.getElementById('loginModal');
+const submitLogin = document.getElementById('submitLogin');
+const usernameInput = document.getElementById('usernameInput');
+const usernameDisplay = document.getElementById('usernameDisplay');
+
+loginBtn.onclick = () => loginModal.classList.remove('hidden');
+submitLogin.onclick = () => {
+  const name = usernameInput.value.trim();
+  if (name) {
+    localStorage.setItem('username', name);
+    usernameDisplay.textContent = name;
+    loginModal.classList.add('hidden');
+    loginBtn.classList.add('hidden');
+    logoutBtn.classList.remove('hidden');
+  }
+};
+logoutBtn.onclick = () => {
+  localStorage.removeItem('username');
+  usernameDisplay.textContent = 'Guest';
+  loginBtn.classList.remove('hidden');
+  logoutBtn.classList.add('hidden');
+};
+if (localStorage.getItem('username')) {
+  usernameDisplay.textContent = localStorage.getItem('username');
+  loginBtn.classList.add('hidden');
+  logoutBtn.classList.remove('hidden');
+}
+
+// Cart System
+const cartBtn = document.getElementById('cartBtn');
+const cartSidebar = document.getElementById('cartSidebar');
+const cartCount = document.getElementById('cartCount');
+const cartItems = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
+const checkoutBtn = document.getElementById('checkoutBtn');
+const clearCartBtn = document.getElementById('clearCartBtn');
+
+cartBtn.onclick = () => cartSidebar.classList.toggle('translate-x-full');
+
+function updateCartUI() {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  cartItems.innerHTML = '';
+  let total = 0;
+  cart.forEach((item, idx) => {
+    total += item.qty * item.price;
+    cartItems.innerHTML += `<div class="mb-2">${item.name} x ${item.qty} = ৳${item.qty * item.price}</div>`;
+  });
+  cartTotal.textContent = total;
+  cartCount.textContent = cart.length;
+}
+
+function addToCart(name, price, qty) {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const existing = cart.find(p => p.name === name);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ name, price, qty });
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartUI();
+}
+
+// Hook add to cart buttons
+Array.from(document.getElementsByClassName('addToCartBtn')).forEach(btn => {
+  btn.addEventListener('click', () => {
+    const name = btn.getAttribute('data-name');
+    const price = parseFloat(btn.getAttribute('data-price'));
+    const qty = parseInt(btn.previousElementSibling.value);
+    addToCart(name, price, qty);
+  });
+});
+
+// Checkout
+checkoutBtn.onclick = () => {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  if (cart.length === 0) return alert('Cart is empty!');
+  let msg = 'Hi! I want to order:\n';
+  cart.forEach(item => msg += `${item.qty} x ${item.name} = ৳${item.qty * item.price}\n`);
+  msg += `Total: ৳${cart.reduce((a, b) => a + b.qty * b.price, 0)}`;
+  window.open(`https://wa.me/8801614661421?text=${encodeURIComponent(msg)}`, '_blank');
+};
+
+clearCartBtn.onclick = () => {
+  localStorage.removeItem('cart');
+  updateCartUI();
+};
+
+updateCartUI();
 // Get elements
 const searchInput = document.getElementById('searchInput');
 const clearButton = document.getElementById('clearSearch');
@@ -547,5 +683,13 @@ clearButton.addEventListener('click', () => {
   filterProducts('all'); // Optionally call filter function to reset the product grid
 });
     </script>   
+    
+<div style="max-width: 800px; margin: 40px auto; background-color: #1b624f; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 14px; color: #fefefe;">
+  <strong>🔒 Disclaimer:</strong>
+  <p style="margin-top: 10px;">
+     ShopiQue Prime Store is not affiliated with or endorsed by Netflix, YouTube, Spotify, Amazon Prime, or any other mentioned services. We only assist users by managing subscription groups. All trademarks and logos are the property of their respective owners.
+  </p>
+</div>
+
 </body>
 </html>
