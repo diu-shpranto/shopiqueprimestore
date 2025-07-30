@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="description" content="ShopiQue Prime Store - Affordable subscriptions for streaming, AI tools, and more.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ShopiQue Prime Store</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class'
-    }
-  </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     @keyframes marquee {
       0% { transform: translateX(100%); }
@@ -22,46 +22,14 @@
     }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-white">
+<body class="font-sans bg-gray-100 text-gray-800">
+  <!-- Main Container -->
+  <div class="max-w-screen-xl mx-auto p-4">
 
-<!-- Header with login/cart/dark mode -->
-<header class="bg-gradient-to-r from-purple-900 to-blue-800 text-white p-4 flex justify-between items-center">
-  <div class="flex items-center gap-4">
-    <img src="logo.png" alt="Logo" class="w-12 h-12 hidden md:block">
-    <h1 class="text-2xl font-bold">ShopiQue Prime Store</h1>
-  </div>
-
-  <div class="flex gap-4 items-center">
-    <button id="darkToggle" class="text-white hover:text-yellow-300">
-      <i class="fas fa-moon"></i>
-    </button>
-    <button id="cartBtn" class="relative">
-      <i class="fas fa-shopping-cart text-white text-xl"></i>
-      <span id="cartCount" class="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1">0</span>
-    </button>
-    <div id="userDisplay" class="text-sm">👤 <span id="usernameDisplay">Guest</span></div>
-    <button id="loginBtn" class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-300 text-sm">Login</button>
-    <button id="logoutBtn" class="hidden bg-red-500 text-white px-3 py-1 rounded hover:bg-red-400 text-sm">Logout</button>
-  </div>
-</header>
-
-<!-- Login Modal -->
-<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-  <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl w-80">
-    <h2 class="text-lg font-bold mb-4">Login</h2>
-    <input id="usernameInput" type="text" placeholder="Enter your name" class="w-full px-3 py-2 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600">
-    <button id="submitLogin" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 w-full">Login</button>
-  </div>
-</div>
-
-<!-- Cart Sidebar -->
-<div id="cartSidebar" class="fixed top-0 right-0 w-80 h-full bg-white dark:bg-gray-800 shadow-xl p-4 transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
-  <h2 class="text-xl font-bold mb-4">Your Cart</h2>
-  <div id="cartItems"></div>
-  <p class="font-bold mt-4">Total: ৳<span id="cartTotal">0</span></p>
-  <button id="checkoutBtn" class="mt-4 bg-green-500 text-white px-4 py-2 rounded w-full hover:bg-green-600">Checkout via WhatsApp</button>
-  <button id="clearCartBtn" class="mt-2 bg-red-500 text-white px-4 py-2 rounded w-full hover:bg-red-600">Clear Cart</button>
-</div>
+    <!-- Logo with responsive size -->
+    <div class="flex justify-center my-4">
+    
+    </div>
 
 
 <!-- 💡 Shop Introduction -->
@@ -109,22 +77,25 @@
   <!-- 🛒 Product Grid -->
   <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6" id="productSection">
 
- <!-- Netflix -->
+   <!-- Main Content -->
+
+      <!-- Netflix -->
       <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
         <div class="relative">
-          <img src="https://filmdaily.co/wp-content/uploads/2022/06/netflix-02-1.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Netflix">
-          <span class="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">Popular</span>
+          <img src="https://filmdaily.co/wp-content/uploads/2022/06/netflix-02-1.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Netflix Subscription">
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">Popular</span>
         </div>
-        <h2 class="text-lg font-semibold mb-1">Netflix Subscription
-        <br>(Single Screen)</h2>
-        <p class="text-sm text-gray-600 mb-2">4K Quality <br>Renewable Account</p>
+        <h2 class="text-lg font-semibold mb-1">Netflix Subscription</h2>
+        <button
+          onclick="showModal('Netflix Subscription', 'Single screen. Monthly renewable. Fast delivery after payment.', 'Streaming Service')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳350/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-Netflix" min="1" value="1" class="w-16 border rounded p-1" />
           <button onclick="orderNow('Netflix', 350)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
         </div>
       </div>
-    
  <!-- YouTube Premium -->
       <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
         <div class="relative">
@@ -132,8 +103,11 @@
           <span class="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">Popular</span>
         </div>
         <h2 class="text-lg font-semibold mb-1">YouTube Premium
-        <br>(Single pack)</h2>
-        <p class="text-sm text-gray-600 mb-2">Ad‑Free + Background Play + Offline Downloads</p>
+        <br><button
+          onclick="showModal('YouTube Premium Plan', 'Single package - Only twice per year is allowed with one email. One month cost 49 TK ', 'Ad‑Free + Background Play + Offline Downloads')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
+        
         <p class="font-bold text-green-600 mb-3">৳49/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-YouTubePremium" min="1" value="1" class="w-16 border rounded p-1" />
@@ -149,13 +123,17 @@
         </div>
         <h2 class="text-lg font-semibold mb-1">YouTube Premium 
             <br>(Renewal pack)</h2>
-        <p class="text-sm text-gray-600 mb-2">Ad‑Free + Background Play + Offline Downloads</p>
+        <button
+          onclick="showModal('YouTube Premium Plan', 'Renewal package - Premium can be taken with the same email every month. Per month cost 130 TK ', 'Ad‑Free + Background Play + Offline Downloads')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳130/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-YouTubePremiumRenewal" min="1" value="1" class="w-16 border rounded p-1" />
           <button onclick="orderNow('YouTube Premium Renewal', 130)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
         </div>
       </div>
+    
       <!-- Gemini Advanced -->
       <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="ai">
         
@@ -164,7 +142,10 @@
           <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">AI Tool</span>
         </div>
         <h2 class="text-lg font-semibold mb-1">Gemini Advanced + 2TB Storage</h2>
-        <p class="text-sm text-gray-600 mb-2">NotebookLM, 1,000 AI Credits, Flow & Whisk</p>
+        <button
+          onclick="showModal('Gemini Advanced Plan', 'Gemini Advanced with 2TB storage. Monthly renewable. Fast delivery after payment.', 'AI Tool')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳100/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-GeminiAdvanced" min="1" value="1" class="w-16 border rounded p-1" />
@@ -178,7 +159,10 @@
           <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">New</span>
         </div>
         <h2 class="text-lg font-semibold mb-1">Capcut Premium</h2>
-        <p class="text-sm text-gray-600 mb-2">Shared Login – Mobile & PC</p>
+        <button
+          onclick="showModal('Capcut Premium Plan', 'Capcut Premium with advanced editing features. Monthly renewable. Fast delivery after payment.', 'Editing Tool')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳400/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-CapcutPremium" min="1" value="1" class="w-16 border rounded p-1" />
@@ -192,7 +176,10 @@
           <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">AI Tool</span>
         </div>
         <h2 class="text-lg font-semibold mb-1">ChatGPT Plus</h2>
-        <p class="text-sm text-gray-600 mb-2">Shared</p>
+         <button
+          onclick="showModal('ChatGPT Plus Plan', 'ChatGPT Plus with advanced AI features. Monthly renewable. Fast delivery after payment.', 'AI Tool')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳400/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-ChatGPT" min="1" value="1" class="w-16 border rounded p-1" />
@@ -203,11 +190,14 @@
       <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
         <img src="https://m.media-amazon.com/images/I/41ElZCn8sML._SX679_.jpg" class="rounded-md mb-2 w-full h-36 object-cover" alt="Hoichoi">
         <h2 class="text-lg font-semibold mb-1">Hoichoi Subscription</h2>
-        <p class="text-sm text-gray-600 mb-2">Personal</p>
-        <p class="font-bold text-green-600 mb-3">৳120/month</p>
+        <button
+          onclick="showModal('Hoichoi Subscription', 'Hoichoi Subscription with unlimited access to all content. Monthly renewable. Fast delivery after payment.', 'Streaming Service')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
+        <p class="font-bold text-green-600 mb-3">৳140/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-Hoichoi" min="1" value="1" class="w-16 border rounded p-1" />
-          <button onclick="orderNow('Hoichoi', 120)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
+          <button onclick="orderNow('Hoichoi', 140)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">Order</button>
         </div>
       </div>
 
@@ -215,7 +205,10 @@
       <div class="product-card bg-white rounded-xl shadow-md p-4 relative flex flex-col justify-between" data-category="streaming">
         <img src="https://tse4.mm.bing.net/th/id/OIP.0xWK5Ls4Ogf3FZd2AJPEOgHaEt?rs=1&pid=ImgDetMain&o=7&rm=3" class="rounded-md mb-2 w-full h-36 object-cover" alt="Sony Liv">
         <h2 class="text-lg font-semibold mb-1">Sony Liv Subscription</h2>
-        <p class="text-sm text-gray-600 mb-2">Personal</p>
+         <button
+          onclick="showModal('Sony Liv Subscription', 'Sony Liv Subscription with access to all content. Monthly renewable. Fast delivery after payment.', 'Streaming Service')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳200/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-SonyLiv" min="1" value="1" class="w-16 border rounded p-1" />
@@ -229,7 +222,10 @@
           <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">New</span>
         </div>
         <h2 class="text-lg font-semibold mb-1">Chorki Subscription</h2>
-        <p class="text-sm text-gray-600 mb-2">Personal</p>
+         <button
+          onclick="showModal('Chorki Subscription', 'Chorki Subscription with unlimited access to all content. Monthly renewable. Fast delivery after payment.', 'Streaming Service')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳160/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-Chorki" min="1" value="1" class="w-16 border rounded p-1" />
@@ -243,7 +239,10 @@
           <span class="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">Popular</span>
         </div>
         <h2 class="text-lg font-semibold mb-1">Spotify Premium</h2>
-        <p class="text-sm text-gray-600 mb-2">1/3/6/12 Months Subscription</p>
+     <button
+          onclick="showModal('Spotify Premium Plan', 'Spotify Premium with ad-free music streaming. Monthly renewable. Fast delivery after payment.', 'Music Streaming')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳120–1080 BDT</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-Spotify" min="1" value="1" class="w-16 border rounded p-1" />
@@ -257,7 +256,10 @@
           <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">New</span>
         </div>
         <h2 class="text-lg font-semibold mb-1">Crunchyroll Subscription</h2>
-        <p class="text-sm text-gray-600 mb-2">Personal or Shared</p>
+         <button
+          onclick="showModal('Crunchyroll Subscription', 'Crunchyroll Subscription with unlimited access to all content. Monthly renewable. Fast delivery after payment.', 'Streaming Service')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳120/month</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-Crunchyroll" min="1" value="1" class="w-16 border rounded p-1" />
@@ -272,7 +274,10 @@
           <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">New</span>
         </div>
         <h2 class="text-lg font-semibold mb-1">Windows 10/11 Pro License</h2>
-        <p class="text-sm text-gray-600 mb-2">Lifetime Activation – Genuine Key</p>
+        <button
+          onclick="showModal('Windows 10/11 Pro License', 'Windows 10/11 Pro License with lifetime activation. Fast delivery after payment.', 'Software')"
+          class="text-indigo-600 hover:underline text-sm font-medium"
+        >More Details</button>
         <p class="font-bold text-green-600 mb-3">৳399 BDT</p>
         <div class="flex items-center gap-2">
           <input type="number" id="qty-Windows" min="1" value="1" class="w-16 border rounded p-1" />
@@ -436,7 +441,134 @@ function orderNow(product, price) {
       window.open(`https://wa.me/8801614661421?text=${encodeURIComponent(msg)}`, '_blank');
     }
   </script>
-</body>
+<!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+    <div class="bg-white rounded-lg w-96 max-h-[80vh] overflow-auto p-6 relative">
+      <button id="closeCart" class="absolute top-2 right-2 text-gray-500 hover:text-black">&times;</button>
+      <h3 class="text-xl font-semibold mb-4">Your Cart</h3>
+      <ul id="cartList" class="space-y-2 mb-4"></ul>
+      <div class="flex justify-between font-bold mb-4">
+        <span>Total:</span> <span id="cartTotal">৳0</span>
+      </div>
+      <button id="checkoutBtn" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+    <div class="bg-white rounded-lg w-96 p-6 relative">
+      <button id="closeCheckout" class="absolute top-2 right-2 text-gray-500 hover:text-black">&times;</button>
+      <h3 class="text-xl font-semibold mb-4">Checkout - Manual Payment</h3>
+      <form id="checkoutForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Name</label>
+          <input type="text" id="custName" required class="w-full border rounded p-2" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Phone/Email</label>
+          <input type="text" id="custContact" required class="w-full border rounded p-2" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Payment Method</label>
+          <select id="paymentMethod" class="w-full border rounded p-2">
+            <option value="bank">Bank Transfer</option>
+            <option value="mobile">Mobile Payment (bKash/Rocket)</option>
+          </select>
+        </div>
+        <div id="paymentDetails" class="text-sm bg-gray-100 p-3 rounded"></div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Confirm Order</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+    const cartBtn = document.getElementById('cartBtn');
+    const cartModal = document.getElementById('cartModal');
+    const closeCart = document.getElementById('closeCart');
+    const cartList = document.getElementById('cartList');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const checkoutModal = document.getElementById('checkoutModal');
+    const closeCheckout = document.getElementById('closeCheckout');
+    const paymentMethod = document.getElementById('paymentMethod');
+    const paymentDetails = document.getElementById('paymentDetails');
+
+    cartBtn.addEventListener('click', () => cartModal.classList.remove('hidden'));
+    closeCart.addEventListener('click', () => cartModal.classList.add('hidden'));
+
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.product-card');
+        const id = card.dataset.id;
+        const name = card.dataset.name;
+        const price = parseFloat(card.dataset.price);
+        const qty = parseInt(card.querySelector('.qty-input').value);
+        const existing = cart.find(i => i.id === id);
+        if (existing) existing.qty += qty;
+        else cart.push({ id, name, price, qty });
+        renderCart();
+      });
+    });
+
+    function renderCart() {
+      cartList.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        const li = document.createElement('li');
+        li.className = 'flex justify-between';
+        li.innerHTML = `${item.name} x ${item.qty} <span>৳${item.price * item.qty}</span>`;
+        cartList.appendChild(li);
+      });
+      cartCount.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
+      cartTotal.textContent = `৳${total}`;
+    }
+
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) {
+        alert('Your cart is empty.');
+        return;
+      }
+      cartModal.classList.add('hidden');
+      checkoutModal.classList.remove('hidden');
+      updatePaymentDetails();
+    });
+    closeCheckout.addEventListener('click', () => checkoutModal.classList.add('hidden'));
+
+    paymentMethod.addEventListener('change', updatePaymentDetails);
+    function updatePaymentDetails() {
+      const method = paymentMethod.value;
+      if (method === 'bank') {
+        paymentDetails.innerHTML = '<p><strong>Bank Account:</strong> 0123456789<br>Bank: ABC Bank<br>Account Name: ShopiQue Prime</p>';
+      } else {
+        paymentDetails.innerHTML = '<p><strong>bKash:</strong> 01700000000 (Personal)<br><strong>Rocket:</strong> 01800000000</p>';
+      }
+    }
+
+    document.getElementById('checkoutForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('custName').value.trim();
+      const contact = document.getElementById('custContact').value.trim();
+      const method = paymentMethod.options[paymentMethod.selectedIndex].text;
+
+      if (!name || name.length < 2) return alert('Please enter your name.');
+      if (!contact || contact.length < 5) return alert('Please enter a valid contact.');
+
+      let orderSummary = cart.map(i => `${i.name} x${i.qty} = ৳${i.qty * i.price}`).join('%0A');
+      let total = cart.reduce((sum, i) => sum + i.qty * i.price, 0);
+
+      const message = `Hello ShopiQue Prime,%0A%0AName: ${name}%0AContact: ${contact}%0APayment Method: ${method}%0A%0AOrder:%0A${orderSummary}%0A%0ATotal: ৳${total}`;
+
+      const phoneNumber = '8801000000000'; // replace with your WhatsApp business number
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+
+      checkoutModal.classList.add('hidden');
+      cart = [];
+      renderCart();
+    });
+  </script>
 <section> 
 
   <!-- 🌟 Footer Section -->
@@ -450,6 +582,7 @@ function orderNow(product, price) {
         <p class="opacity-90 leading-relaxed">
           Your trusted digital subscription store. We provide premium access to top streaming, AI tools, and media services at the lowest price in Bangladesh.
         </p>
+        <br> #shopiqueprimestore
       </div>
 
       <!-- 💡 Why Choose Us -->
@@ -506,7 +639,7 @@ function orderNow(product, price) {
  <!-- Bottom Copyright -->
 <div class="mt-10 border-t border-white/20 pt-4 text-center text-xs opacity-80">
   <div class="max-w-7xl mx-auto text-center">
-    &copy; 2025 ShopiQue Prime Store. All rights reserved.
+    &copy; <!-- 🔒 Disclaimer & Terms (Compact) --> <div class="col-span-full border-t border-white/20 pt-6 mt-6 text-sm text-white/80 space-y-2"> <h3 class="text-base font-semibold text-white">🔒 Disclaimer & Terms</h3> <p> ShopiQue Prime Store is an independent reseller. We are not affiliated with Netflix, YouTube, or any listed brands. </p> <p> Subscriptions may be shared/group-based. Use is at your own risk and must follow fair usage. </p> <p> No refunds after delivery. For issues, contact <a href="mailto:shopiqueprimestore@gmail.com" class="underline hover:text-white">shopiqueprimestore@gmail.com</a>. </p> </div>
   </div>
 </div>
 
@@ -553,109 +686,7 @@ function orderNow(product, price) {
     // Show all products initially
     filterProducts("all");
   </script>
-  <script>
-// Dark Mode Toggle
-const darkToggle = document.getElementById('darkToggle');
-const htmlEl = document.documentElement;
-if (localStorage.getItem('darkMode') === 'enabled') htmlEl.classList.add('dark');
-
-darkToggle.addEventListener('click', () => {
-  htmlEl.classList.toggle('dark');
-  localStorage.setItem('darkMode', htmlEl.classList.contains('dark') ? 'enabled' : 'disabled');
-});
-
-// Login System
-const loginBtn = document.getElementById('loginBtn');
-const logoutBtn = document.getElementById('logoutBtn');
-const loginModal = document.getElementById('loginModal');
-const submitLogin = document.getElementById('submitLogin');
-const usernameInput = document.getElementById('usernameInput');
-const usernameDisplay = document.getElementById('usernameDisplay');
-
-loginBtn.onclick = () => loginModal.classList.remove('hidden');
-submitLogin.onclick = () => {
-  const name = usernameInput.value.trim();
-  if (name) {
-    localStorage.setItem('username', name);
-    usernameDisplay.textContent = name;
-    loginModal.classList.add('hidden');
-    loginBtn.classList.add('hidden');
-    logoutBtn.classList.remove('hidden');
-  }
-};
-logoutBtn.onclick = () => {
-  localStorage.removeItem('username');
-  usernameDisplay.textContent = 'Guest';
-  loginBtn.classList.remove('hidden');
-  logoutBtn.classList.add('hidden');
-};
-if (localStorage.getItem('username')) {
-  usernameDisplay.textContent = localStorage.getItem('username');
-  loginBtn.classList.add('hidden');
-  logoutBtn.classList.remove('hidden');
-}
-
-// Cart System
-const cartBtn = document.getElementById('cartBtn');
-const cartSidebar = document.getElementById('cartSidebar');
-const cartCount = document.getElementById('cartCount');
-const cartItems = document.getElementById('cartItems');
-const cartTotal = document.getElementById('cartTotal');
-const checkoutBtn = document.getElementById('checkoutBtn');
-const clearCartBtn = document.getElementById('clearCartBtn');
-
-cartBtn.onclick = () => cartSidebar.classList.toggle('translate-x-full');
-
-function updateCartUI() {
-  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  cartItems.innerHTML = '';
-  let total = 0;
-  cart.forEach((item, idx) => {
-    total += item.qty * item.price;
-    cartItems.innerHTML += `<div class="mb-2">${item.name} x ${item.qty} = ৳${item.qty * item.price}</div>`;
-  });
-  cartTotal.textContent = total;
-  cartCount.textContent = cart.length;
-}
-
-function addToCart(name, price, qty) {
-  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  const existing = cart.find(p => p.name === name);
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    cart.push({ name, price, qty });
-  }
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartUI();
-}
-
-// Hook add to cart buttons
-Array.from(document.getElementsByClassName('addToCartBtn')).forEach(btn => {
-  btn.addEventListener('click', () => {
-    const name = btn.getAttribute('data-name');
-    const price = parseFloat(btn.getAttribute('data-price'));
-    const qty = parseInt(btn.previousElementSibling.value);
-    addToCart(name, price, qty);
-  });
-});
-
-// Checkout
-checkoutBtn.onclick = () => {
-  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  if (cart.length === 0) return alert('Cart is empty!');
-  let msg = 'Hi! I want to order:\n';
-  cart.forEach(item => msg += `${item.qty} x ${item.name} = ৳${item.qty * item.price}\n`);
-  msg += `Total: ৳${cart.reduce((a, b) => a + b.qty * b.price, 0)}`;
-  window.open(`https://wa.me/8801614661421?text=${encodeURIComponent(msg)}`, '_blank');
-};
-
-clearCartBtn.onclick = () => {
-  localStorage.removeItem('cart');
-  updateCartUI();
-};
-
-updateCartUI();
+<script>
 // Get elements
 const searchInput = document.getElementById('searchInput');
 const clearButton = document.getElementById('clearSearch');
@@ -683,13 +714,7 @@ clearButton.addEventListener('click', () => {
   filterProducts('all'); // Optionally call filter function to reset the product grid
 });
     </script>   
-    
-<div style="max-width: 800px; margin: 40px auto; background-color: #1b624f; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 14px; color: #fefefe;">
-  <strong>🔒 Disclaimer:</strong>
-  <p style="margin-top: 10px;">
-     ShopiQue Prime Store is not affiliated with or endorsed by Netflix, YouTube, Spotify, Amazon Prime, or any other mentioned services. We only assist users by managing subscription groups. All trademarks and logos are the property of their respective owners.
-  </p>
-</div>
-
+<!-- 🪟 Product Details Popup Modal --> <div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm"> <div class="bg-white rounded-xl max-w-md w-full mx-4 p-6 relative"> <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-500 hover:text-black text-xl font-bold">&times;</button> <h2 id="modalTitle" class="text-xl font-semibold text-gray-800 mb-2">Product Title</h2> <p id="modalDescription" class="text-gray-600 text-sm leading-relaxed"> Product description goes here. </p> </div> </div>
+ <script> function showModal(title, description) { document.getElementById('modalTitle').textContent = title; document.getElementById('modalDescription').textContent = description; document.getElementById('productModal').classList.remove('hidden'); document.getElementById('productModal').classList.add('flex'); } function closeModal() { document.getElementById('productModal').classList.remove('flex'); document.getElementById('productModal').classList.add('hidden'); } </script>
 </body>
 </html>
