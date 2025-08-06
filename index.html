@@ -13,7 +13,8 @@
   <meta name="author" content="ShopiQue Prime">
   <meta name="robots" content="index, follow">
   <link rel="icon" href="favicon.ico">
-  
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -37,6 +38,7 @@
     <div class="flex justify-center my-4">
     
     </div>
+    
 
 
 <!-- 💡 Shop Introduction -->
@@ -1143,6 +1145,113 @@ clearButton.addEventListener('click', () => {
         event.currentTarget.classList.add('active');
     }
 </script>
+<!-- 🌟 Floating Review Sidebar (Sticky + Toggle + Auto-fade) -->
+<div id="reviewSidebar" class="fixed right-4 bottom-24 w-72 bg-white shadow-xl border border-yellow-400 rounded-xl p-4 z-50 hidden md:flex flex-col transition-all duration-300 ease-in-out opacity-100">
+  <!-- Collapse Button -->
+  <button id="toggleReviewSidebar" class="absolute top-1 right-2 text-gray-400 hover:text-black text-xl font-bold focus:outline-none">&minus;</button>
 
+  <h3 class="text-lg font-bold text-gray-800 mb-2">⭐ Customer Reviews</h3>
+
+  <!-- Overall Rating -->
+  <div class="text-yellow-400 text-xl">★★★★☆</div>
+  <p class="text-sm text-gray-500 mb-3">124 reviews</p>
+
+  <!-- Mini Reviews -->
+  <div class="text-sm text-gray-700 mb-2 italic border-l-4 border-yellow-400 pl-2">
+    "Got Netflix in 5 mins!"  
+    <span class="block text-xs text-gray-400">– Mehedi</span>
+  </div>
+  <div class="text-sm text-gray-700 mb-2 italic border-l-4 border-yellow-400 pl-2">
+    "Super support on WhatsApp!"  
+    <span class="block text-xs text-gray-400">– Nabila</span>
+  </div>
+
+  <!-- View More Button -->
+  <button onclick="scrollToReviews()" class="mt-3 bg-yellow-400 text-white px-3 py-1 rounded text-sm hover:bg-yellow-500 w-full">
+    View All Reviews
+  </button>
+</div>
+<!-- 🧾 Full Review Section -->
+<section id="fullReviewSection" class="max-w-4xl mx-auto px-6 py-12 bg-white rounded-xl shadow-md my-10">
+  <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">🌟 What Our Customers Say</h2>
+
+  <!-- ⭐ Overall Rating -->
+  <div class="text-center mb-8">
+    <div class="text-yellow-400 text-2xl mb-1">★★★★★</div>
+    <p class="text-gray-600 text-sm">Based on 124 verified reviews</p>
+  </div>
+
+  <!-- 💬 Individual Reviews -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="bg-gray-50 p-5 rounded-lg shadow-sm">
+      <p class="text-yellow-400 font-semibold">★★★★★</p>
+      <p class="text-gray-800 mt-2 text-sm">"Excellent service! I got my Netflix instantly."</p>
+      <p class="text-xs text-gray-500 mt-1">— Mehedi H.</p>
+    </div>
+
+    <div class="bg-gray-50 p-5 rounded-lg shadow-sm">
+      <p class="text-yellow-400 font-semibold">★★★★☆</p>
+      <p class="text-gray-800 mt-2 text-sm">"Affordable and fast. Highly recommend!"</p>
+      <p class="text-xs text-gray-500 mt-1">— Nabila K.</p>
+    </div>
+
+    <div class="bg-gray-50 p-5 rounded-lg shadow-sm">
+      <p class="text-yellow-400 font-semibold">★★★★★</p>
+      <p class="text-gray-800 mt-2 text-sm">"I always buy bundles here. Great support too."</p>
+      <p class="text-xs text-gray-500 mt-1">— Arif R.</p>
+    </div>
+
+    <div class="bg-gray-50 p-5 rounded-lg shadow-sm">
+      <p class="text-yellow-400 font-semibold">★★★★☆</p>
+      <p class="text-gray-800 mt-2 text-sm">"Helped me instantly on WhatsApp!"</p>
+      <p class="text-xs text-gray-500 mt-1">— Mahiya T.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="text-center mt-10">
+    <a href="https://wa.me/8801614661421" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+      Submit Your Review on WhatsApp 📩
+    </a>
+  </div>
+</section>
+<script>
+const reviewSidebar = document.getElementById("reviewSidebar");
+const toggleButton = document.getElementById("toggleReviewSidebar");
+
+// Hide on scroll down, show on scroll up
+let lastScrollTop = 0;
+window.addEventListener("scroll", function () {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  if (scrollTop > lastScrollTop) {
+    reviewSidebar.style.opacity = "0";
+  } else {
+    reviewSidebar.style.opacity = "1";
+  }
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
+// Collapse manually
+toggleButton.addEventListener("click", () => {
+  reviewSidebar.classList.add("hidden");
+});
+
+// Scroll to full review section
+function scrollToReviews() {
+  const section = document.getElementById("fullReviewSection");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ShopiQue Prime Store",
+  "url": "https://shopiqueprimestore.shop",
+  "logo": "https://shopiqueprimestore.shop/logo.png"
+}
+</script>
 </body>
 </html>
